@@ -22,7 +22,7 @@ public class ArithmeticExp {
     private Integer id;
     @Column(nullable = false)
     private String expression;
-    @Column(nullable = false)
+    @Column
     private Double result;
 
     @Override
