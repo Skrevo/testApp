@@ -28,14 +28,16 @@ public class ArithmeticExpController {
     @PostMapping("addArithmeticExpForm")
     public String addArithmeticExpForm(@ModelAttribute ArithmeticExp arithmeticExp) {
         String expression = arithmeticExp.getExpression();
-        if (expression.matches("^(\\d([\\+])).*(\\d)$")) {
-            double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
+        double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
+        System.err.println(Arrays.toString(nums));
+        if (expression.matches("^.*(\\d(\\+)).*(\\d)$")) {
+            //double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
             arithmeticExp.setResult(Arrays.stream(nums).sum());
             arithmeticExpService.save(arithmeticExp);
             System.err.println(arithmeticExp);
             return "redirect:arithmeticExp";
         }
-        return "redirect:error";
+        return "redirect:arithmeticExp";
     }
 
     @PostMapping("openArithmeticExpForm")
