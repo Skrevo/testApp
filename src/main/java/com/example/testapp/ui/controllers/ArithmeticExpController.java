@@ -42,4 +42,9 @@ public class ArithmeticExpController {
         return new ModelAndView("redirect:arithmeticExpUpdate", new ModelMap("id", id));
     }
 
+    @PostMapping("searchResultsForm")
+    public String searchResultsForm(@ModelAttribute ArithmeticExp arithmeticExp) {
+        return "redirect:arithmeticExp";
+    }
+
 }
