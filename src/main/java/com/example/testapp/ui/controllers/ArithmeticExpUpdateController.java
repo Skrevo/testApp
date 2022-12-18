@@ -9,37 +9,32 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
-import java.util.List;
 
 @Controller
-public class ArithmeticExpController {
+public class ArithmeticExpUpdateController {
     @Autowired
-    public ArithmeticExpService arithmeticExpService;
+    private ArithmeticExpService arithmeticExpService;
 
-    @GetMapping("arithmeticExp")
-    public String load(Model model) {
-        List<ArithmeticExp> list = arithmeticExpService.findAll();
-        model.addAttribute("arithmeticExps",list);
-        return "arithmeticExp";
+    @GetMapping("arithmeticExpUpdate")
+    public String load(@RequestParam("id") Integer id, Model model) {
+        ArithmeticExp arithmeticExp = arithmeticExpService.findById(id);
+        model.addAttribute("arithmeticExp",arithmeticExp);
+        return "arithmeticExpUpdate";
     }
-    @PostMapping("addArithmeticExpForm")
-    public String addArithmeticExpForm(@ModelAttribute ArithmeticExp arithmeticExp) {
+
+    @PostMapping("updateArithmeticExpForm")
+    public ModelAndView updateArithmeticExpForm(@ModelAttribute ArithmeticExp arithmeticExp){
         String expression = arithmeticExp.getExpression();
         if (expression.matches("^.*(\\d(\\+)).*(\\d)$")) {
             double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
             arithmeticExp.setResult(Arrays.stream(nums).sum());
             arithmeticExpService.save(arithmeticExp);
-            return "redirect:arithmeticExp";
         }
-        return "redirect:arithmeticExp";
+        //arithmeticExpService.save(arithmeticExp);
+        return new ModelAndView("redirect:arithmeticExp", new ModelMap("id", arithmeticExp.getId()));
     }
-
-    @PostMapping("openArithmeticExpForm")
-    public ModelAndView openArithmeticExpForm(Integer id) {
-        return new ModelAndView("redirect:arithmeticExpUpdate", new ModelMap("id", id));
-    }
-
 }

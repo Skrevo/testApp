@@ -8,4 +8,6 @@ public interface ArithmeticExpService {
     ArithmeticExp save(ArithmeticExp arithmeticExp);
 
     List<ArithmeticExp> findAll();
+
+    ArithmeticExp findById(Integer id);
 }

@@ -23,4 +23,9 @@ public class ArithmeticExpServiceDb implements ArithmeticExpService {
     public List<ArithmeticExp> findAll() {
         return arithmeticExpRepository.findAll();
     }
+
+    @Override
+    public ArithmeticExp findById(Integer id) {
+        return arithmeticExpRepository.findById(id).get();
+    }
 }

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Arithmetic Exp Update</title>
 </head>
 <body>
+<div class="arithmeticExpForm">
+    <form th:action="@{/updateArithmeticExpForm}" method="post">
+        <input type="text" name="id" readonly th:value="${arithmeticExp.id}">
+        <input type="text" name="expression" th:value="${arithmeticExp.expression}">
+        <input type="text" name="result" readonly th:value="${arithmeticExp.result}">
+        <input type="submit" value="SAVE">
+    </form>
+</div>
 
 </body>
 </html>

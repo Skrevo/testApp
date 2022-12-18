@@ -5,6 +5,14 @@
     <title>Arithmetic Exp</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+<header>
+  <div class="searchResultForm">
+    <form th:action="@{/searchResultsForm}" method="post" id="searchResultsForm">
+      <input type="text" name="result" id="result" placeholder="Search result">
+      <input type="submit" id="submitSearchResultForm" value="Search result">
+    </form>
+  </div>
+</header>
 <body>
 <div class="arithmeticForm">
   <form th:action="@{/addArithmeticExpForm}" method="post" id="addArithmeticExpForm">
