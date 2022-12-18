@@ -10,4 +10,6 @@ public interface ArithmeticExpService {
     List<ArithmeticExp> findAll();
 
     ArithmeticExp findById(Integer id);
+
+    List<ArithmeticExp> findByResult(Double result);
 }

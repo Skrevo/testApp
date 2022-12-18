@@ -43,8 +43,9 @@ public class ArithmeticExpController {
     }
 
     @PostMapping("searchResultsForm")
-    public String searchResultsForm(@ModelAttribute ArithmeticExp arithmeticExp) {
-        return "redirect:arithmeticExp";
+    public ModelAndView searchResultsForm(Double result) {
+        System.err.println(result);
+        return new ModelAndView("redirect:arithmeticSearch", new ModelMap("result", result));
     }
 
 }

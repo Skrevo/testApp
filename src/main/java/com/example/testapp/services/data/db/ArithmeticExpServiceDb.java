@@ -28,4 +28,9 @@ public class ArithmeticExpServiceDb implements ArithmeticExpService {
     public ArithmeticExp findById(Integer id) {
         return arithmeticExpRepository.findById(id).get();
     }
+
+    @Override
+    public List<ArithmeticExp> findByResult(Double result) {
+        return arithmeticExpRepository.findByResult(result);
+    }
 }
