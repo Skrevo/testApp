@@ -20,10 +20,8 @@ public class ArithmeticExpRepositoryTest {
     @Test
     public void save() {
         ArithmeticExp a1_saved = arithmeticExpRepository.save(a1);
-       // ArithmeticExp a2_saved = arithmeticExpRepository.save(a2);
+        ArithmeticExp a2_saved = arithmeticExpRepository.save(a2);
         a1.setId(a1_saved.getId());
-       // a2.setId(a2_saved.getId());
-
-        assertEquals(a1,a1_saved);
+        a2.setId(a2_saved.getId());
     }
 }

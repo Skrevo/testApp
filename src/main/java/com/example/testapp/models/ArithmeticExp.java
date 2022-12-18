@@ -25,4 +25,12 @@ public class ArithmeticExp {
     @Column(nullable = false)
     private Double result;
 
+    @Override
+    public String toString() {
+        return "ArithmeticExp{" +
+                "id=" + id +
+                ", expression='" + expression + '\'' +
+                ", result=" + result +
+                '}';
+    }
 }
