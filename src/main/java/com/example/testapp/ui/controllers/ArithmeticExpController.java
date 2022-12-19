@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -27,13 +26,9 @@ public class ArithmeticExpController {
     }
     @PostMapping("addArithmeticExpForm")
     public String addArithmeticExpForm(@ModelAttribute ArithmeticExp arithmeticExp) {
-        String expression = arithmeticExp.getExpression();
-        if (expression.matches("^.*(\\d(\\+)).*(\\d)$")) {
-            double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
-            arithmeticExp.setResult(Arrays.stream(nums).sum());
-            arithmeticExpService.save(arithmeticExp);
-            return "redirect:arithmeticExp";
-        }
+
+        arithmeticExp.setResult(arithmeticExp.eval(arithmeticExp.getExpression()));
+        arithmeticExpService.save(arithmeticExp);
         return "redirect:arithmeticExp";
     }
 
@@ -44,7 +39,6 @@ public class ArithmeticExpController {
 
     @PostMapping("searchResultsForm")
     public ModelAndView searchResultsForm(Double result) {
-        System.err.println(result);
         return new ModelAndView("redirect:arithmeticSearch", new ModelMap("result", result));
     }
 

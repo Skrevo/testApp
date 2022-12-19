@@ -28,13 +28,8 @@ public class ArithmeticExpUpdateController {
 
     @PostMapping("updateArithmeticExpForm")
     public ModelAndView updateArithmeticExpForm(@ModelAttribute ArithmeticExp arithmeticExp){
-        String expression = arithmeticExp.getExpression();
-        if (expression.matches("^.*(\\d(\\+)).*(\\d)$")) {
-            double[] nums = Arrays.stream(expression.split("\\+")).mapToDouble(Double::parseDouble).toArray();
-            arithmeticExp.setResult(Arrays.stream(nums).sum());
-            arithmeticExpService.save(arithmeticExp);
-        }
-        //arithmeticExpService.save(arithmeticExp);
+        arithmeticExp.setResult(arithmeticExp.eval(arithmeticExp.getExpression()));
+        arithmeticExpService.save(arithmeticExp);
         return new ModelAndView("redirect:arithmeticExp", new ModelMap("id", arithmeticExp.getId()));
     }
 }
