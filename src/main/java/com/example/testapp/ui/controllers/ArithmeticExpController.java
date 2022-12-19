@@ -42,4 +42,13 @@ public class ArithmeticExpController {
         return new ModelAndView("redirect:arithmeticSearch", new ModelMap("result", result));
     }
 
+    @PostMapping("searchResultsFormLes")
+    public ModelAndView searchResultsFormLes(Double result) {
+        return new ModelAndView("redirect:arithmeticSearch", new ModelMap("result", result));
+    }
+
+    @PostMapping("searchResultsFormBig")
+    public ModelAndView searchResultsFormBig(Double result) {
+        return new ModelAndView("redirect:arithmeticSearch", new ModelMap("result", result));
+    }
 }

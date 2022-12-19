@@ -11,6 +11,14 @@
       <input type="number" step="any" name="result" placeholder="Search result">
       <input type="submit" value="Search result">
     </form>
+    <form th:action="@{/searchResultsFormLes}" method="post">
+      <input type="number" step="any" name="result" placeholder="Search result">
+    <input type="submit" value="Search result lesser">
+    </form>
+    <form th:action="@{/searchResultFormBig}" method="post">
+      <input type="number" step="any" name="result" placeholder="Search result">
+      <input type="submit" value="Search result bigger">
+    </form>
   </div>
 
 <body>
