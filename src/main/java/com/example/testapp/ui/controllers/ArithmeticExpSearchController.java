@@ -18,7 +18,6 @@ public class ArithmeticExpSearchController {
     @GetMapping("arithmeticSearch")
     public String load(@RequestParam("result") Double result, Model model) {
         List<ArithmeticExp> list = arithmeticExpService.findByResult(result);
-        //System.out.println(list);
         model.addAttribute("arithmeticExps", list);
         return "arithmeticSearch";
     }
